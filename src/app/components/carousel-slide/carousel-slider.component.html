@@ -1,0 +1,13 @@
+
+<div class="carousel-container">
+  <div class="carousel fade" *ngFor="let item of items" >
+     <img src="{{item.src}}" alt="" style="width: 100%;">
+  </div>
+
+  <a class="prev" (click)="prev()">
+    <span>&#10094;</span>
+  </a>
+  <a class="next" (click)="next()">
+    <span>&#10095;</span>
+  </a>
+</div>

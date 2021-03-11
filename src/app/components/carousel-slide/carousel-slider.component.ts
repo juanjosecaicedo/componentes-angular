@@ -10,7 +10,7 @@ export class CarouselSliderComponent implements OnInit, AfterViewInit {
   @Input() automatic: boolean = false;
 
   private slideIndex = 1;
-  constructor() {}
+  constructor() { }
   ngAfterViewInit(): void {
     const firstSlide: Element = document.querySelector(
       '.carousel-container .carousel'
@@ -28,12 +28,21 @@ export class CarouselSliderComponent implements OnInit, AfterViewInit {
 
   public next(): void {
     const n = 1;
-    this.showSlide((this.slideIndex += n));
+    let time = this.showSlide(this.slideIndex += n);
+    this.cleartTime(time);
   }
 
   public prev(): void {
     const n = -1;
-    this.showSlide((this.slideIndex += n));
+    let time = this.showSlide(this.slideIndex += n);
+
+    this.cleartTime(time);
+  }
+
+  private cleartTime(t: any): void {
+    if (this.automatic) {
+      clearTimeout(t);
+    }
   }
 
   private showSlide(numero: number): any {
@@ -51,14 +60,20 @@ export class CarouselSliderComponent implements OnInit, AfterViewInit {
     [...slides].length
       ? [...slides][this.slideIndex - 1].classList.add('active')
       : false;
-    if (slideShow) {
-      console.log(slideShow.getAttribute('duration'));
-    }
+
+      // console.log(this.items[this.slideIndex-1])
+
+
     if (this.automatic) {
-      let time = setTimeout(() => {
-         this.showSlide((this.slideIndex += 1));
+      let time = 5000;
+      if(this.items[this.slideIndex-1]){
+        // time = this.items[this.slideIndex-1].duration
+      }
+      let timeout = setTimeout(() => {
+        this.showSlide((this.slideIndex += 1));
       }, 5000);
-      return time;
+
+      return timeout;
     }
   }
 }

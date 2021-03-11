@@ -7,6 +7,7 @@ import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 })
 export class CarouselSliderComponent implements OnInit, AfterViewInit {
   @Input() items: Array<string> = [];
+  @Input() automatic: boolean = false;
 
   private slideIndex = 1;
   constructor() {}
@@ -19,10 +20,10 @@ export class CarouselSliderComponent implements OnInit, AfterViewInit {
     }
   }
 
-
-
   ngOnInit(): void {
-
+    if (this.automatic) {
+      this.showSlide(this.slideIndex);
+    }
   }
 
   public next(): void {
@@ -35,7 +36,7 @@ export class CarouselSliderComponent implements OnInit, AfterViewInit {
     this.showSlide((this.slideIndex += n));
   }
 
-  private showSlide(numero: number): void {
+  private showSlide(numero: number): any {
     const slides: NodeListOf<Element> | any = document.querySelectorAll(
       '.carousel-container .carousel'
     );
@@ -50,10 +51,14 @@ export class CarouselSliderComponent implements OnInit, AfterViewInit {
     [...slides].length
       ? [...slides][this.slideIndex - 1].classList.add('active')
       : false;
-    console.log('llego')
-    setInterval(() =>{
-      this.showSlide(numero);
-    }, 2000);
+    if (slideShow) {
+      console.log(slideShow.getAttribute('duration'));
+    }
+    if (this.automatic) {
+      let time = setTimeout(() => {
+         this.showSlide((this.slideIndex += 1));
+      }, 5000);
+      return time;
+    }
   }
-
 }

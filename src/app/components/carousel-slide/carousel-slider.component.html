@@ -1,6 +1,6 @@
 
 <div class="carousel-container">
-  <div class="carousel fade" *ngFor="let item of items" >
+  <div class="carousel fade" *ngFor="let item of items"  duration="{{item.duration}}">
      <img src="{{item.src}}" alt="" style="width: 100%;">
   </div>
 

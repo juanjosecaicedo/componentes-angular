@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 declare interface DATA_IMAGES {
   src: string,
-  alt?: string
+  alt?: string,
+  duration?: number
 }
 
 @Component({
@@ -17,15 +18,18 @@ export class AppComponent {
   items: Array<DATA_IMAGES> = [
     {
       src: 'https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg',
-      alt: '...'
+      alt: '...',
+      duration: 2000
     },
     {
       src: 'https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg',
-      alt: '...'
+      alt: '...',
+      duration: 8000
     },
     {
       src: 'https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg',
-      alt: '...'
+      alt: '...',
+      duration: 5000
     }
   ]
 }
